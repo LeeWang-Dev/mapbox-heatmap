@@ -1,8 +1,10 @@
 const express = require('express');
-const path = require("path");
 const cors = require('cors');
 
-const PORT = normalizePort(process.env.PORT || '8080');
+const PORT = normalizePort(process.env.PORT || '3001');
+
+const appRouter = require("./routes/app");
+const jsonServerRouter = require("./routes/json-server");
 
 const app = express();
 
@@ -11,16 +13,12 @@ app.use(express.json());
 
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, 'client/build')));
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/', (req, res) => {
-   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
-
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
+
+app.use('/', appRouter);
+app.use('/json-server', jsonServerRouter);
 
 function normalizePort(val) {
     var port = parseInt(val, 10);
