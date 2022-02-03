@@ -1,6 +1,6 @@
-export const BASE_URL = 'http://localhost:3001';
+//export const BASE_URL = 'http://localhost:3001';
 
-//export const BASE_URL = 'https://mapbox-heatmap.herokuapp.com';
+export const BASE_URL = 'https://mapbox-heatmap.herokuapp.com';
 
 export const MAPBOX_TOKEN = "pk.eyJ1IjoibGVld2FuZ2RldiIsImEiOiJja2tnbDU2c2gwMHNvMndsdDF1d2pxNTQ2In0.zKeo06DtCh6fLifrbCZCFA";
 
