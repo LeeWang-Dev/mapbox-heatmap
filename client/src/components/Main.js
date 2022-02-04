@@ -81,6 +81,10 @@ function Main() {
   const [drawStatus, setDrawStatus] = useState(false);
 
   const onMarkerDragEnd = (e) => {
+    setSearchPlace({
+        ...searchPlace,
+        location:e.lngLat
+    });
     const geocoder = new google.maps.Geocoder;
     var latlng = {lat: e.lngLat[1], lng: e.lngLat[0]};
     geocoder.geocode({'location': latlng}, function(results, status) {
@@ -91,10 +95,7 @@ function Main() {
                     setSearchPlace({
                         ...searchPlace,
                         title: place.name || '',
-                        location:[
-                            place.geometry.location.lng(),
-                            place.geometry.location.lat()
-                        ],
+                        location: e.lngLat,
                         address:place.formatted_address
                     });
                 }
@@ -185,7 +186,8 @@ function Main() {
 
   const handleDrawButtonClick = () => {
      setSearchPlace(null);
-     setMapCursor('crosshair');
+     //setMapCursor('crosshair');
+     setMapCursor(`url(${iconMarker}) 16 44, auto`);
      setDrawStatus(true);
   }
 
@@ -201,10 +203,7 @@ function Main() {
                             setSearchPlace({
                                 title: place.name || '',
                                 category:'',
-                                location:[
-                                    place.geometry.location.lng(),
-                                    place.geometry.location.lat()
-                                ],
+                                location:e.lngLat,
                                 address:place.formatted_address,
                                 description:''
                             });
