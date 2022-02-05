@@ -85,7 +85,7 @@ function Main() {
         ...searchPlace,
         location:e.lngLat
     });
-    const geocoder = new google.maps.Geocoder;
+    const geocoder = new google.maps.Geocoder();
     var latlng = {lat: e.lngLat[1], lng: e.lngLat[0]};
     geocoder.geocode({'location': latlng}, function(results, status) {
         if (status === 'OK') {
@@ -94,7 +94,6 @@ function Main() {
                 if(place && place.geometry && place.formatted_address){
                     setSearchPlace({
                         ...searchPlace,
-                        title: place.name || '',
                         location: e.lngLat,
                         address:place.formatted_address
                     });
@@ -145,7 +144,7 @@ function Main() {
         var place = autocomplete.getPlace();
         if(place && place.geometry && place.formatted_address){
           setSearchPlace({
-            title: place.name || '',
+            title:'',
             category:'',
             location:[
               place.geometry.location.lng(),
@@ -160,7 +159,7 @@ function Main() {
               latitude:place.geometry.location.lat(),
               zoom:18,
               bearing:0,
-              transitionInterpolator: new FlyToInterpolator,
+              transitionInterpolator: new FlyToInterpolator(),
               transitionDuration: 1000
           })
         }
@@ -193,7 +192,7 @@ function Main() {
 
   const onMapClick = (e) => {
     if(drawStatus){
-        const geocoder = new google.maps.Geocoder;
+        const geocoder = new google.maps.Geocoder();
         var latlng = {lat: e.lngLat[1], lng: e.lngLat[0]};
         geocoder.geocode({'location': latlng}, function(results, status) {
             if (status === 'OK') {
@@ -201,7 +200,7 @@ function Main() {
                         var place = results[0];
                         if(place && place.geometry && place.formatted_address){
                             setSearchPlace({
-                                title: place.name || '',
+                                title:'',
                                 category:'',
                                 location:e.lngLat,
                                 address:place.formatted_address,

@@ -95,19 +95,4 @@ router.post('/feature/add', (req, res) => {
     }
 });
 
-router.put('/feature/update', (req, res) => {
-    const { 
-        id,
-        title,
-        address,
-        description
-    } = req.body;
-
-});
-
-router.delete('/feature/delete', (req, res) => {
-    const { id } = req.body;
-
-});
-
 module.exports = router;
